@@ -24,10 +24,18 @@ export default Vue.extend({})
 
 .main-text {
   font-size: 100pt;
-  color: #777da7;
+  color: transparent;
+  background: linear-gradient(
+    to right,
+    var(--rhythm),
+    var(--maximum-blue-green) 60%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .description {
   font-size: 20pt;
+  color: var(--oxford-blue);
 }
 </style>

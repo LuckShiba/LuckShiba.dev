@@ -13,12 +13,12 @@
   width: 100vw;
   display: flex;
   justify-content: flex-end;
-  position: absolute;
+  position: fixed;
 }
 
 .nav-button {
   margin: 10px 5px;
-  border: 2px solid #777da7;
+  border: 2px solid var(--secondary);
   border-radius: 20px;
   width: 100px;
   height: 40px;
@@ -26,23 +26,23 @@
   justify-content: center;
   align-items: center;
   color: black;
+  transition: all 0.3s;
 }
 
 .nav-button:hover {
-  background-color: #777da7;
+  background-color: var(--secondary);
   color: white;
 }
 </style>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&display=swap');
 html {
   font-family: 'Fira Code', monospace;
   box-sizing: border-box;
 }
 
 body {
-  background-color: #f1f1f1;
+  background-color: var(--background);
 }
 
 *,
@@ -51,5 +51,29 @@ body {
   box-sizing: border-box;
   margin: 0;
   text-decoration: none;
+}
+
+:root {
+  --oxford-blue: #0b132b;
+  --space-cadet: #1c2541;
+  --rhythm: #777da7;
+  --maximum-blue-green: #5bc0be;
+  --turquoise-blue: #6fffe9;
+  --primary: var(--rhythm);
+  --secondary: var(--maximum-blue-green);
+  --background: #f1f1f1;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: transform 0.5s;
+}
+
+.page-enter {
+  transform: translateX(100%);
+}
+
+.page-leave-to {
+  transform: translateX(-100%);
 }
 </style>
