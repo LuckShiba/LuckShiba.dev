@@ -21,12 +21,12 @@ export default Vue.extend({
   margin: 10px 5px;
   border: 2px solid var(--secondary);
   border-radius: 20px;
-  width: 100px;
+  min-width: 100px;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: var(--oxford-blue);
   transition: all 0.3s;
 }
 

@@ -49,6 +49,16 @@ body {
   text-decoration: none;
 }
 
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 :root {
   --oxford-blue: #0b132b;
   --space-cadet: #1c2541;
