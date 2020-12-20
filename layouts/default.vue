@@ -1,39 +1,35 @@
 <template>
   <div>
-    <div class="navbar">
-      <NuxtLink to="/projects" class="nav-button">Projects</NuxtLink>
-      <NuxtLink to="/about" class="nav-button">About</NuxtLink>
-    </div>
-    <Nuxt />
+    <Navbar>
+      <NavButton v-for="page of pages" :key="page.name" :to="page.to">{{
+        page.name
+      }}</NavButton>
+    </Navbar>
+    <main>
+      <Nuxt />
+    </main>
   </div>
 </template>
 
-<style scoped>
-.navbar {
-  width: 100vw;
-  display: flex;
-  justify-content: flex-end;
-  position: fixed;
-}
-
-.nav-button {
-  margin: 10px 5px;
-  border: 2px solid var(--secondary);
-  border-radius: 20px;
-  width: 100px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  transition: all 0.3s;
-}
-
-.nav-button:hover {
-  background-color: var(--secondary);
-  color: white;
-}
-</style>
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  data: () => ({
+    pages: [
+      {
+        name: 'Home',
+        to: '/',
+      },
+      {
+        name: 'Projects',
+      },
+      {
+        name: 'About',
+      },
+    ].map(({ name, to }) => ({ name, to: to ?? name.toLowerCase() })),
+  }),
+})
+</script>
 
 <style>
 html {
@@ -64,16 +60,20 @@ body {
   --background: #f1f1f1;
 }
 
-.page-enter-active,
-.page-leave-active {
+.slide-left-enter-active,
+.slide-right-enter-active,
+.slide-left-leave-active,
+.slide-right-leave-active {
   transition: transform 0.5s;
 }
 
-.page-enter {
+.slide-right-enter,
+.slide-right-leave-to {
   transform: translateX(100%);
 }
 
-.page-leave-to {
+.slide-left-enter,
+.slide-left-leave-to {
   transform: translateX(-100%);
 }
 </style>
