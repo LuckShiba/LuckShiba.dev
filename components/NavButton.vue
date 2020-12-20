@@ -34,6 +34,5 @@ export default Vue.extend({
 .nuxt-link-exact-active {
   background-color: var(--secondary);
   color: white;
-  transform: scale(105%);
 }
 </style>
