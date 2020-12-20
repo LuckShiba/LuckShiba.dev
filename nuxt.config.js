@@ -48,4 +48,5 @@ export default {
   build: {},
   target: 'static',
   mode: 'spa',
+  ssr: false,
 }
