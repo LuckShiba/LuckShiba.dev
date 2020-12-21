@@ -70,20 +70,16 @@ body {
   --background: #f1f1f1;
 }
 
-.slide-left-enter-active,
-.slide-right-enter-active,
-.slide-left-leave-active,
-.slide-right-leave-active {
+.page-enter-active,
+.page-leave-active {
   transition: transform 0.5s;
 }
 
-.slide-right-enter,
-.slide-right-leave-to {
+.page-enter {
   transform: translateX(100%);
 }
 
-.slide-left-enter,
-.slide-left-leave-to {
+.page-leave-to {
   transform: translateX(-100%);
 }
 </style>
