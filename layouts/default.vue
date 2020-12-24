@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout">
     <Navbar>
       <NavButton v-for="page of pages" :key="page.name" :to="page.to">{{
         page.name
@@ -47,6 +47,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   text-decoration: none;
+  scrollbar-width: none;
 }
 
 .container {
