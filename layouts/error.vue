@@ -1,23 +1,21 @@
 <template>
   <div class="container">
-    <h1>{{ error.statusCode }}</h1>
-    {{ messages[error.statusCode] || 'Unexpected error' }}
+    <img :src="`https://http.cat/${error.statusCode}`" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-  props: {
-    error: {
-      type: Object,
-      required: true,
-    },
-  },
-  data: () => ({
-    messages: {
-      404: 'Page not found',
-    },
-  }),
-})
+import { NuxtError } from '@nuxt/types'
+import { Vue, Component, Prop } from 'vue-property-decorator'
+
+@Component
+export default class Error extends Vue {
+  @Prop() error!: NuxtError
+}
 </script>
+
+<style scoped>
+img {
+  height: 80vh;
+}
+</style>

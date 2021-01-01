@@ -1,21 +1,15 @@
 <template>
-  <div>
-    <div class="container">
-      <span class="main-text">LuckShiba</span>
-      <span class="description">Just a newbie developer</span>
-      <fa-icon icon="arrow-down" />
-    </div>
-    <!-- <div class="container">test</div> -->
+  <div class="container">
+    <span class="main-text">LuckShiba</span>
+    <span class="description">Just a newbie developer</span>
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({})
-</script>
-
 <style>
+html {
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
 .main-text {
   font-size: 100pt;
   color: transparent;
@@ -32,6 +26,12 @@ export default Vue.extend({})
   animation: 15s linear running infinite gradient;
 }
 
+@media (max-width: 720px) {
+  .main-text {
+    font-size: 18vw;
+  }
+}
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -46,6 +46,6 @@ export default Vue.extend({})
 
 .description {
   font-size: 20pt;
-  color: var(--oxford-blue);
+  color: var(--text);
 }
 </style>

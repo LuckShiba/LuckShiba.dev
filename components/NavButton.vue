@@ -5,15 +5,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-  props: {
-    to: {
-      type: String,
-      required: true,
-    },
-  },
-})
+import { Vue, Prop, Component } from 'vue-property-decorator'
+
+@Component
+export default class NavButton extends Vue {
+  @Prop() to!: string
+}
 </script>
 
 <style scoped>
@@ -26,13 +23,13 @@ export default Vue.extend({
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--oxford-blue);
+  color: var(--text);
   transition: all 0.3s;
 }
 
 .nav-button:hover,
 .nuxt-link-exact-active {
   background-color: var(--secondary);
-  color: white;
+  color: var(--background);
 }
 </style>
