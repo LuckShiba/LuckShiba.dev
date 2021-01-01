@@ -6,6 +6,7 @@ html {
 body {
   transition: background-color 0.3s;
   background-color: var(--background);
+  color: var(--text);
 }
 
 *,
