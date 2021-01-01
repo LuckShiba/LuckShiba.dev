@@ -12,7 +12,7 @@ import { Vue, Component } from 'vue-property-decorator'
 @Component
 export default class FooterButtons extends Vue {
   get isDark() {
-    return this.$colorMode.preference === 'dark'
+    return this.$colorMode.value === 'dark'
   }
 
   get icon() {
