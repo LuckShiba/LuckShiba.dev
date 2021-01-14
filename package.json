@@ -20,7 +20,7 @@
     "vue-class-component": "^7.2.6"
   },
   "devDependencies": {
-    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@nuxt/types": "^2.14.6",
     "@nuxt/typescript-build": "^2.0.3",
