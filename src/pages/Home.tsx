@@ -1,7 +1,11 @@
+import Nav from "../components/Nav";
+import styles from "./Home.module.css";
+
 export default function Home() {
   return (
-    <div>
-      <h1>Hello, world!</h1>
+    <div className={styles.home}>
+      <span className={styles.title}>LuckShiba</span>
+      <Nav disableHome />
     </div>
   );
 }
