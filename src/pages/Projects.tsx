@@ -17,7 +17,6 @@ export default function Projects() {
         "bentotec.live was a website made for Bentotec," +
         " a science and technology fair, popular voting.",
       github: "LuckShiba/bentotec.live",
-      website: "https://bentotec.live",
       image: BentotecImage,
     },
   ];
