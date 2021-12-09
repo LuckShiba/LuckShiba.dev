@@ -2,12 +2,12 @@ import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes";
 import "./App.css";
 
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </div>
   );
 }
-
-export default App;
