@@ -1,0 +1,8 @@
+.heroChar {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    color: var(--color-red);
+    font-size: 1.1em;
+  }
+}

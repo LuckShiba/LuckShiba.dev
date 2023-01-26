@@ -1,0 +1,10 @@
+.hero {
+  height: 100vh;
+  background-color: var(--color-purple);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: min(10vw, 20rem);
+}
