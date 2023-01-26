@@ -15,7 +15,7 @@ export const useSequentialAnimation = (size: number, timeout: number) => {
     return () => {
       timeouts.forEach((timeout) => clearTimeout(timeout));
     };
-  }, [size]);
+  }, [size, timeout]);
 
   return current;
 };

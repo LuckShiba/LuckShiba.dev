@@ -4,7 +4,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <Hero />
-      I've become so numb, I can't feel you there.
+      The sun goes down I feel the light betray me
     </div>
   );
 };
