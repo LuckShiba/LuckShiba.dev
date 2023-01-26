@@ -1,8 +1,38 @@
+$jump: jump 200ms linear;
+
 .heroChar {
-  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+
   cursor: pointer;
-  &:hover {
-    color: var(--color-red);
-    font-size: 1.1em;
+  color: var(--color-white);
+  font-family: var(--font-monospace);
+  user-select: none;
+
+  &.jump:hover {
+    transform: scale(1.1) translateY(-0.05em);
+  }
+
+  &:focus {
+    animation: $jump;
+    transform: none;
+  }
+}
+
+.jump {
+  animation: $jump;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

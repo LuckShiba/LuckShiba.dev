@@ -1,10 +1,35 @@
 .hero {
   height: 100vh;
-  background-color: var(--color-purple);
+
+  background: var(--gradient-purple);
+  background-size: 500vw;
+  background-position: 100% 100%;
   color: var(--color-white);
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: min(10vw, 20rem);
+  text-align: center;
+  font-size: min(11vw, 20rem);
+
+  animation: gradient 10s ease infinite;
+}
+
+.break {
+  @media (min-width: 350px) {
+    display: none;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
