@@ -1,5 +1,8 @@
-function App() {
-  return <div>I've become so numb, I can't feel you there.</div>;
-}
+import { RouterProvider } from "react-router-dom";
+import router from "@/router";
+
+const App: React.FC = () => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;
