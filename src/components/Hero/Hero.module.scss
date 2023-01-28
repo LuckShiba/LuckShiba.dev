@@ -33,3 +33,23 @@
     background-position: 0% 50%;
   }
 }
+
+.i {
+  transition: transform 0.5s ease-in-out;
+}
+
+.iActive {
+  transform: rotate(180deg) !important;
+}
+
+.b {
+  color: transparent;
+  position: relative;
+}
+
+.bImage {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0.175em;
+}

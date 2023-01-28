@@ -1,5 +1,3 @@
-$jump: jump 200ms linear;
-
 .heroChar {
   display: inline-block;
   transition-property: transform;
@@ -11,27 +9,25 @@ $jump: jump 200ms linear;
   font-family: var(--font-monospace);
   user-select: none;
 
-  &.jump:hover {
-    transform: scale(1.1) translateY(-0.05em);
-  }
-
-  &:focus {
-    animation: $jump;
-    transform: none;
+  &:not(.active):hover {
+    transform: scale(1.1) translateY(-0.05em) rotate(0);
   }
 }
 
 .jump {
-  animation: $jump;
+  animation: jump 0.5s;
 }
 
 @keyframes jump {
   0% {
+    transition: none;
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-5%);
   }
+
   100% {
     transform: translateY(0);
   }
