@@ -10,18 +10,7 @@ const ACTIONS: Array<HeroCharProps["options"] | undefined> = [
   undefined, // L
   undefined, // u
   undefined, // c
-  (active) => ({
-    extraRender: () => {
-      return (
-        <div
-          className={classNames(styles.kRect, {
-            [styles.kRectActive]: active,
-          })}
-        />
-      );
-    },
-    className: styles.k,
-  }), // k
+  undefined, // k
   undefined, // S
   undefined, // h
   (active) => ({
