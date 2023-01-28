@@ -26,6 +26,7 @@ const ACTIONS: Array<HeroCharProps["options"] | undefined> = [
     },
     timeout: 5000,
     className: classNames(styles.i, { [styles.iActive]: active }),
+    disableJump: active,
   }), // i
   (active) => ({
     extraRender: () => {

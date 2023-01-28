@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { MouseEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./HeroChar.module.scss";
 
 export interface HeroCharProps extends React.PropsWithChildren {
@@ -9,11 +9,13 @@ export interface HeroCharProps extends React.PropsWithChildren {
     style?: React.CSSProperties;
     extraRender?: () => React.ReactNode;
     timeout?: number;
+    disableJump?: boolean;
   };
 }
 
 const HeroChar: React.FC<HeroCharProps> = ({ children, jump, options }) => {
   const [active, setActive] = useState(false);
+  const [clickAnimation, setClickAnimation] = useState(false);
 
   const activeOptions = useMemo(() => options?.(active), [active, options]);
   useEffect(() => {
@@ -26,14 +28,20 @@ const HeroChar: React.FC<HeroCharProps> = ({ children, jump, options }) => {
     }
   }, [active, activeOptions?.timeout]);
 
-  const handleClick = (event: MouseEvent<HTMLSpanElement>) => {
-    setActive((x) => {
-      if (!x && event.target instanceof HTMLElement) {
-        event.target.style.animation = "none";
-        event.target.offsetHeight; // trigger reflow
-        event.target.style.animation = "";
-      }
+  useEffect(() => {
+    if (active) {
+      setClickAnimation(true);
 
+      const timeout = setTimeout(() => {
+        setClickAnimation(false);
+      }, 500);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [active]);
+
+  const handleClick = () => {
+    setActive((x) => {
       return !x;
     });
   };
@@ -41,7 +49,7 @@ const HeroChar: React.FC<HeroCharProps> = ({ children, jump, options }) => {
   return (
     <span
       className={classNames(styles.heroChar, activeOptions?.className, {
-        [styles.jump]: jump,
+        [styles.jump]: jump || (clickAnimation && !activeOptions?.disableJump),
         [styles.active]: active,
       })}
       onClick={handleClick}
