@@ -34,6 +34,25 @@
   }
 }
 
+.k {
+  position: relative;
+}
+
+.kRect {
+  position: absolute;
+  height: 1rem;
+  width: 0.09em;
+  background-color: currentColor;
+  bottom: 0.18em;
+  left: 0.105em;
+
+  transition: height 0.5s ease-in-out;
+}
+
+.kRectActive {
+  height: 100vw;
+}
+
 .i {
   transition: transform 0.5s ease-in-out;
 }
