@@ -7,7 +7,7 @@ export interface HeroCharProps extends React.PropsWithChildren {
   options?: (active: boolean) => {
     className?: string;
     style?: React.CSSProperties;
-    extraRender?: () => React.ReactNode;
+    extraRender?: React.ReactElement;
     timeout?: number;
     disableJump?: boolean;
   };
@@ -56,7 +56,7 @@ const HeroChar: React.FC<HeroCharProps> = ({ children, jump, options }) => {
       style={activeOptions?.style}
     >
       {children}
-      {activeOptions?.extraRender?.()}
+      {activeOptions?.extraRender}
     </span>
   );
 };
