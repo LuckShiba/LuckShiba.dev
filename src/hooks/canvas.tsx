@@ -1,4 +1,5 @@
 import { RefObject, useCallback, useEffect, useMemo, useRef } from "react";
+import debounce from "lodash.debounce";
 
 export const useCanvasDraw = (ref: RefObject<HTMLCanvasElement>) => {
   const canvas = ref.current;
@@ -75,17 +76,21 @@ export const useAutoCanvasResize = (
 ) => {
   const canvas = ref.current;
 
-  const resize = useCallback(() => {
-    if (!canvas) return;
+  const resize = useMemo(
+    () =>
+      debounce(() => {
+        if (!canvas) return;
 
-    const { width, height } = canvas.getBoundingClientRect();
+        const { width, height } = canvas.getBoundingClientRect();
 
-    canvas.width = width;
-    canvas.height = height;
-  }, [canvas]);
+        canvas.width = width;
+        canvas.height = height;
+      }, 100),
+    [canvas]
+  );
 
   useEffect(() => {
-    if (!el) return;
+    if (!el || !canvas) return;
 
     resize();
 
@@ -96,5 +101,5 @@ export const useAutoCanvasResize = (
     return () => {
       resizeObserver.disconnect();
     };
-  }, [el, resize]);
+  }, [el, resize, canvas]);
 };
