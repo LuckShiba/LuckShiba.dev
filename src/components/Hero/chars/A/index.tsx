@@ -44,6 +44,7 @@ const AExtra: React.FC<AExtraProps> = ({ active, refs }) => {
     };
 
     const touchMove = (e: TouchEvent) => {
+      e.preventDefault();
       const { clientX, clientY } = e.touches[0];
       draw(clientX, clientY);
     };
