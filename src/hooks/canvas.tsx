@@ -21,7 +21,7 @@ export const useCanvasDraw = (ref: RefObject<HTMLCanvasElement>) => {
       const mouseY = y - top;
 
       ctx.beginPath();
-      ctx.strokeStyle = "currentColor";
+      ctx.strokeStyle = getComputedStyle(canvas).color;
       ctx.moveTo(lastX.current, lastY.current);
       ctx.lineTo(mouseX, mouseY);
       ctx.lineWidth = document.body.clientWidth / 250;
