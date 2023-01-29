@@ -2,22 +2,40 @@ import classNames from "classnames";
 import { useEffect, useMemo, useState } from "react";
 import styles from "./HeroChar.module.scss";
 
+export interface Refs {
+  canvas: React.RefObject<HTMLCanvasElement>;
+  hero: React.RefObject<HTMLDivElement>;
+}
+
 export interface HeroCharProps extends React.PropsWithChildren {
   jump?: boolean;
-  options?: (active: boolean) => {
+  options?: (
+    active: boolean,
+    refs: Refs
+  ) => {
     className?: string;
     style?: React.CSSProperties;
     extraRender?: React.ReactElement;
     timeout?: number;
     disableJump?: boolean;
   };
+  refs: Refs;
 }
 
-const HeroChar: React.FC<HeroCharProps> = ({ children, jump, options }) => {
+const HeroChar: React.FC<HeroCharProps> = ({
+  children,
+  jump,
+  options,
+  refs,
+}) => {
   const [active, setActive] = useState(false);
   const [clickAnimation, setClickAnimation] = useState(false);
 
-  const activeOptions = useMemo(() => options?.(active), [active, options]);
+  const activeOptions = useMemo(
+    () => options?.(active, refs),
+    [active, options, refs]
+  );
+
   useEffect(() => {
     if (active && activeOptions?.timeout) {
       const timeout = setTimeout(() => {
