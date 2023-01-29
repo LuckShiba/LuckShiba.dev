@@ -34,14 +34,36 @@ const AExtra: React.FC<AExtraProps> = ({ active, refs }) => {
       draw(e.clientX, e.clientY);
     };
 
+    const touchStart = (e: TouchEvent) => {
+      const { clientX, clientY } = e.touches[0];
+      startDrawing(clientX, clientY);
+    };
+
+    const touchEnd = () => {
+      stopDrawing();
+    };
+
+    const touchMove = (e: TouchEvent) => {
+      const { clientX, clientY } = e.touches[0];
+      draw(clientX, clientY);
+    };
+
     hero.addEventListener("mousedown", mouseDown);
     hero.addEventListener("mouseup", mouseUp);
     hero.addEventListener("mousemove", mouseMove);
+
+    hero.addEventListener("touchstart", touchStart);
+    hero.addEventListener("touchend", touchEnd);
+    hero.addEventListener("touchmove", touchMove);
 
     return () => {
       hero.removeEventListener("mousedown", mouseDown);
       hero.removeEventListener("mouseup", mouseUp);
       hero.removeEventListener("mousemove", mouseMove);
+
+      hero.removeEventListener("touchstart", touchStart);
+      hero.removeEventListener("touchend", touchEnd);
+      hero.removeEventListener("touchmove", touchMove);
     };
   });
 
