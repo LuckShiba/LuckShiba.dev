@@ -66,10 +66,16 @@ const HeroChar: React.FC<HeroCharProps> = ({
 
   return (
     <span
-      className={classNames(styles.heroChar, activeOptions?.className, {
-        [styles.jump]: jump || (clickAnimation && !activeOptions?.disableJump),
-        [styles.active]: active,
-      })}
+      className={classNames(
+        styles.heroChar,
+        activeOptions?.className,
+        "heroChar",
+        {
+          [styles.jump]:
+            jump || (clickAnimation && !activeOptions?.disableJump),
+          [styles.active]: active,
+        }
+      )}
       onClick={handleClick}
       style={activeOptions?.style}
     >

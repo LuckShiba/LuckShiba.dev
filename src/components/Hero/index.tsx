@@ -3,6 +3,7 @@ import HeroChar, { HeroCharProps } from "./Char";
 import { useRef } from "react";
 import classNames from "classnames";
 
+import HOptions from "./chars/H";
 import IOptions from "./chars/I";
 import BOptions from "./chars/B";
 import AOptions from "./chars/A";
@@ -18,7 +19,7 @@ const ACTIONS: Array<HeroCharProps["options"] | undefined> = [
   undefined, // c
   undefined, // k
   undefined, // S
-  undefined, // h
+  HOptions,
   IOptions,
   BOptions,
   AOptions,
