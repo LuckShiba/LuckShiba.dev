@@ -24,7 +24,7 @@ export const useCanvasDraw = (ref: RefObject<HTMLCanvasElement>) => {
       ctx.strokeStyle = getComputedStyle(canvas).color;
       ctx.moveTo(lastX.current, lastY.current);
       ctx.lineTo(mouseX, mouseY);
-      ctx.lineWidth = document.body.clientWidth / 250;
+      ctx.lineWidth = 5;
       ctx.lineJoin = ctx.lineCap = "round";
       ctx.stroke();
 
