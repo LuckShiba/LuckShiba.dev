@@ -1,7 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export const useSequentialAnimation = (size: number, timeout: number) => {
+export const useSequentialAnimation = (
+  size: number,
+  timeout: number,
+  delay = 0
+) => {
   const [current, setCurrent] = useState(0);
+  const timeoutsRef = useRef<number[]>([]);
 
   useEffect(() => {
     const timeouts = Array(size + 1)
@@ -9,19 +14,21 @@ export const useSequentialAnimation = (size: number, timeout: number) => {
       .map((_, i) => {
         return setTimeout(() => {
           setCurrent(i);
-        }, timeout * i);
+        }, delay + timeout * i);
       });
 
     timeouts.push(
       setTimeout(() => {
         setCurrent(-1);
-      }, timeout * (size + 2))
+      }, delay + timeout * (size + 2))
     );
 
+    timeoutsRef.current = timeouts;
+
     return () => {
-      timeouts.forEach((timeout) => clearTimeout(timeout));
+      timeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
     };
-  }, [size, timeout]);
+  }, [size, timeout, timeoutsRef, delay]);
 
   return current;
 };

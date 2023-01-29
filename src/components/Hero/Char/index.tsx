@@ -73,6 +73,7 @@ const HeroChar: React.FC<HeroCharProps> = ({
         {
           [styles.jump]:
             jump || (clickAnimation && !activeOptions?.disableJump),
+          [styles.initialJump]: jump,
           [styles.active]: active,
         }
       )}
