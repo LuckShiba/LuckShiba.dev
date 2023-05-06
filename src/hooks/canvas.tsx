@@ -12,7 +12,7 @@ export const useCanvasDraw = (ref: RefObject<HTMLCanvasElement>) => {
   }, [canvas]);
 
   const draw = useCallback(
-    (x: number, y: number) => {
+    (x: number, y: number, pressure = 1) => {
       if (!ctx || !canvas || !isDrawing.current) return;
 
       const { left, top } = canvas.getBoundingClientRect();
@@ -24,7 +24,7 @@ export const useCanvasDraw = (ref: RefObject<HTMLCanvasElement>) => {
       ctx.strokeStyle = getComputedStyle(canvas).color;
       ctx.moveTo(lastX.current, lastY.current);
       ctx.lineTo(mouseX, mouseY);
-      ctx.lineWidth = 5;
+      ctx.lineWidth = 5 * pressure;
       ctx.lineJoin = ctx.lineCap = "round";
       ctx.stroke();
 
@@ -35,17 +35,16 @@ export const useCanvasDraw = (ref: RefObject<HTMLCanvasElement>) => {
   );
 
   const startDrawing = useCallback(
-    (x: number, y: number) => {
+    (x: number, y: number, pressure = 1) => {
       if (!ctx || !canvas) return;
 
       const { left, top } = canvas.getBoundingClientRect();
 
       lastX.current = x - left;
       lastY.current = y - top;
-
       isDrawing.current = true;
 
-      draw(x, y);
+      draw(x, y, pressure);
     },
     [ctx, canvas, draw]
   );

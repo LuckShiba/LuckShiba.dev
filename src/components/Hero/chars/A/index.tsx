@@ -22,16 +22,17 @@ const AExtra: React.FC<AExtraProps> = ({ active, refs }) => {
       return;
     }
 
-    const mouseDown = (e: MouseEvent) => {
-      startDrawing(e.clientX, e.clientY);
+    const mouseDown = (e: PointerEvent) => {
+      startDrawing(e.clientX, e.clientY, e.pressure);
     };
 
     const mouseUp = () => {
       stopDrawing();
     };
 
-    const mouseMove = (e: MouseEvent) => {
-      draw(e.clientX, e.clientY);
+    const mouseMove = (e: PointerEvent) => {
+      draw(e.clientX, e.clientY, e.pressure);
+      e;
     };
 
     const touchStart = (e: TouchEvent) => {
@@ -49,18 +50,18 @@ const AExtra: React.FC<AExtraProps> = ({ active, refs }) => {
       draw(clientX, clientY);
     };
 
-    hero.addEventListener("mousedown", mouseDown);
-    hero.addEventListener("mouseup", mouseUp);
-    hero.addEventListener("mousemove", mouseMove);
+    hero.addEventListener("pointerdown", mouseDown);
+    hero.addEventListener("pointerup", mouseUp);
+    hero.addEventListener("pointermove", mouseMove);
 
     hero.addEventListener("touchstart", touchStart);
     hero.addEventListener("touchend", touchEnd);
     hero.addEventListener("touchmove", touchMove);
 
     return () => {
-      hero.removeEventListener("mousedown", mouseDown);
-      hero.removeEventListener("mouseup", mouseUp);
-      hero.removeEventListener("mousemove", mouseMove);
+      hero.removeEventListener("pointerdown", mouseDown);
+      hero.removeEventListener("pointerup", mouseUp);
+      hero.removeEventListener("pointermove", mouseMove);
 
       hero.removeEventListener("touchstart", touchStart);
       hero.removeEventListener("touchend", touchEnd);
