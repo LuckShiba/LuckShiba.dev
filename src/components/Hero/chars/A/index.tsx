@@ -36,8 +36,8 @@ const AExtra: React.FC<AExtraProps> = ({ active, refs }) => {
     };
 
     const touchStart = (e: TouchEvent) => {
-      const { clientX, clientY } = e.touches[0];
-      startDrawing(clientX, clientY);
+      const { clientX, clientY, force } = e.touches[0];
+      startDrawing(clientX, clientY), force;
     };
 
     const touchEnd = () => {
@@ -46,8 +46,8 @@ const AExtra: React.FC<AExtraProps> = ({ active, refs }) => {
 
     const touchMove = (e: TouchEvent) => {
       e.preventDefault();
-      const { clientX, clientY } = e.touches[0];
-      draw(clientX, clientY);
+      const { clientX, clientY, force } = e.touches[0];
+      draw(clientX, clientY, force);
     };
 
     hero.addEventListener("pointerdown", mouseDown);
