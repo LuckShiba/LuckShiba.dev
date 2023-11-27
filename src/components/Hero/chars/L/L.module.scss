@@ -1,0 +1,86 @@
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(50) translateX(1.5rem);
+  }
+
+  97% {
+    background-color: transparent;
+  }
+
+  100% {
+    transform: scale(100) translateX(29%);
+    background-color: var(--color-white);
+  }
+}
+
+@keyframes reappear {
+  0% {
+    font-size: 0;
+    z-index: 10;
+    color: var(--color-purple);
+    --color: var(--color-purple);
+  }
+
+  100% {
+    font-size: min(17vw, 18rem);
+    z-index: 10;
+    color: var(--color-purple);
+  }
+}
+
+@keyframes revert {
+  from {
+    color: var(--color-purple);
+    background-color: transparent;
+  }
+
+  to {
+    color: var(--color-white);
+  }
+}
+
+@keyframes revert-l {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes revert-l-original {
+  0% {
+    color: transparent;
+  }
+
+  100% {
+    color: var(--color-white);
+  }
+}
+
+.l.active {
+  transition: none;
+
+  &::after {
+    content: "L";
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation-timing-function: ease-in-out;
+    animation-name: grow, revert-l;
+    animation-duration: 5s, 2s;
+    animation-delay: 0s, 9s;
+    animation-fill-mode: forwards;
+    color: var(--color-white);
+    font-size: min(17vw, 18rem);
+  }
+
+  & > :global(.heroCharText) {
+    color: transparent;
+    animation: 2s revert-l-original 9s ease-in-out forwards infinite;
+  }
+}

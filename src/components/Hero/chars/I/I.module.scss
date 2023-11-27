@@ -1,6 +1,5 @@
 .i {
   position: relative;
-  color: transparent;
 
   &::after {
     transition: transform 0.5s ease-in-out !important;
@@ -8,7 +7,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    color: var(--color-white);
     z-index: 100;
   }
 
@@ -17,4 +15,8 @@
       transform: rotate(180deg) !important;
     }
   }
+}
+
+.i > :global(.heroCharText) {
+  color: transparent;
 }

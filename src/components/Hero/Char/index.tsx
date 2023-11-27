@@ -80,7 +80,7 @@ const HeroChar: React.FC<HeroCharProps> = ({
       onClick={handleClick}
       style={activeOptions?.style}
     >
-      {children}
+      <span className="heroCharText">{children}</span>
       {activeOptions?.extraRender}
     </span>
   );

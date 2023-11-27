@@ -4,6 +4,7 @@ import { useRef } from "react";
 import classNames from "classnames";
 import { useAutoCanvasResize } from "@/hooks/canvas";
 
+import LOptions from "./chars/L";
 import KOptions from "./chars/K";
 import HOptions from "./chars/H";
 import IOptions from "./chars/I";
@@ -15,7 +16,7 @@ import styles from "./Hero.module.scss";
 const TEXT = "LuckShiba";
 
 const ACTIONS: Array<HeroCharProps["options"] | undefined> = [
-  undefined, // L
+  LOptions,
   undefined, // u
   undefined, // c
   KOptions,
