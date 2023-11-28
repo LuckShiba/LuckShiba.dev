@@ -10,12 +10,12 @@ interface LExtraProps {
 }
 
 const GlobalStyles = () => css`
-  .heroChar:not(.${styles.l}) {
-    animation-name: ${styles.reappear}, ${styles.revert};
-    animation-duration: 4s, 1s;
-    animation-timing-function: ease-in-out;
-    animation-delay: 5s, 9s;
-    animation-fill-mode: forwards;
+  .heroChar {
+    animation-name: ${styles.reappear}, ${styles.revert}!important;
+    animation-duration: 4s, 1s!important;
+    animation-timing-function: ease-in-out!important;
+    animation-delay: 5s, 9s!important;
+    animation-fill-mode: forwards!important;
   }
 `;
 const LExtra: React.FC<LExtraProps> = ({ active }) => {

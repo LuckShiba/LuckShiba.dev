@@ -1,5 +1,5 @@
 .b {
-  color: transparent;
+  color: transparent!important;
   position: relative;
 }
 
@@ -8,4 +8,5 @@
   width: 100%;
   left: 0;
   bottom: 0.175em;
+  z-index: 1;
 }
