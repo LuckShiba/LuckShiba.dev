@@ -1,0 +1,22 @@
+.i {
+  position: relative;
+
+  &::after {
+    transition: transform 0.5s ease-in-out !important;
+    content: "i";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+
+  &.active {
+    &::after {
+      transform: rotate(180deg) !important;
+    }
+  }
+}
+
+.i > :global(.heroCharText) {
+  color: transparent;
+}

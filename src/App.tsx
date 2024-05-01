@@ -1,13 +1,11 @@
-import { BrowserRouter } from "react-router-dom";
-import Routes from "./Routes";
-import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import router from "@/router";
 
-export default function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
-    </div>
-  );
-}
+import "normalize.css";
+import "@/styles/global.scss";
+
+const App: React.FC = () => {
+  return <RouterProvider router={router} />;
+};
+
+export default App;

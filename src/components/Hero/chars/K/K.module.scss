@@ -1,0 +1,54 @@
+@keyframes shake {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(-5%, -5%);
+  }
+
+  50% {
+    transform: translate(5%, 5%);
+  }
+
+  75% {
+    transform: translate(-5%, 5%);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes rocket {
+  10% {
+    transform: translate(0, 0);
+  }
+
+  30% {
+    transform: translateY(5rem);
+  }
+
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+@keyframes back-from-bottom {
+  0% {
+    transform: translateY(60vh);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+span.k.active {
+  transition: none;
+  animation-name: shake, rocket, back-from-bottom;
+  animation-duration: 0.25s, 1.75s, 0.5s;
+  animation-iteration-count: 4, 1, 1;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s, 1s, 2.75s;
+}
