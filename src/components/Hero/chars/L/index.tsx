@@ -1,36 +1,69 @@
-import { css, Global } from "@emotion/react";
-import { useMemo } from "react";
-import { HeroCharProps } from "../../Char";
 
+import { useEffect, useMemo, useState } from "react";
+import { HeroCharProps } from "../../Char";
 import styles from "./L.module.scss";
-import classNames from "classnames";
 
 interface LExtraProps {
   active: boolean;
 }
 
-const GlobalStyles = () => css`
-  .heroChar {
-    animation-name: ${styles.reappear}, ${styles.revert}!important;
-    animation-duration: 4s, 1s!important;
-    animation-timing-function: ease-in-out!important;
-    animation-delay: 5s, 9s!important;
-    animation-fill-mode: forwards!important;
-  }
-`;
+const images = ["lua1.jpg", "lua2.webp", "lua3.png", "lua4.png", "lua5.png"];
+const audios = ["lua1.ogg", "lua2.ogg", "lua3.ogg"];
+
+const chooseRandom = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
+const getRandomScreenPosition = () => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight / 3,
+});
+
+interface Cat {
+  image: string;
+  position: { x: number; y: number };
+}
+
 const LExtra: React.FC<LExtraProps> = ({ active }) => {
-  const styles = useMemo(() => (active ? GlobalStyles() : undefined), [active]);
+  const [cats, setCats] = useState<Cat[]>([]);
 
-  if (!active) return null;
+  useEffect(() => {
+    if (!active) return;
 
-  return <Global styles={styles} />;
+    const meow = new Audio(`/lua/${chooseRandom(audios)}`);
+    meow.play();
+
+    setCats((cats) => [...cats, {
+      image: chooseRandom(images),
+      position: getRandomScreenPosition(),
+    }]);
+
+    const timeout = setTimeout(() => {
+      setCats((cats) => cats.slice(1));
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, [active]);
+
+  return (
+    <>
+      {cats.map((cat, i) => (
+        <img 
+          key={i}
+          src={`/lua/${cat.image}`}
+          alt="cat"
+          className={styles.lua}
+          style={{
+            top: cat.position.y,
+            left: cat.position.x,        
+          }}
+        />
+      ))}
+    </>
+  );
 };
 
 const LOptions: HeroCharProps["options"] = (active) => ({
   extraRender: <LExtra active={active} />,
-  className: classNames(styles.l, { [styles.active]: active }),
-  disableJump: active,
-  timeout: 11000,
+  disableJump: false,
+  timeout: 1,
 });
 
 export default LOptions;

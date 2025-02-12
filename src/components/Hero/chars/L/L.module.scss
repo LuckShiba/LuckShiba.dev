@@ -1,80 +1,19 @@
-@keyframes grow {
+@keyframes upAndDisappear {
   0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(50) translateX(1.5rem);
-  }
-
-  97% {
-    background-color: transparent;
-  }
-
-  100% {
-    transform: scale(100) translateX(29%);
-    background-color: var(--color-white);
-  }
-}
-
-@keyframes reappear {
-  0% {
-    font-size: 0;
-    z-index: 10;
-    color: var(--color-purple);
-  }
-
-  100% {
-    font-size: min(17vw, 18rem);
-    z-index: 10;
-    color: var(--color-purple);
-  }
-}
-
-@keyframes revert {
-  from {
-    color: var(--color-purple);
-    background-color: transparent;
-  }
-
-  to {
-    color: var(--color-white);
-  }
-}
-
-@keyframes revert-l {
-  from {
+    transform: translateY(0);
     opacity: 1;
   }
-  to {
+  100% {
+    transform: translateY(-50vh);
     opacity: 0;
   }
 }
 
-.l.active {
-  transition: none;
-
-  position: relative;
-  z-index: 2;
-
-  &::after {
-    content: "L";
-    position: absolute;
-    top: 0;
-    left: 0;
-    animation-timing-function: ease-in-out;
-    animation-name: grow, revert-l;
-    animation-duration: 5s, 2s;
-    animation-delay: 0s, 9s;
-    animation-fill-mode: forwards;
-    color: var(--color-white);
-    font-size: min(17vw, 18rem);
-  }
-
-  color: transparent;
-
-  & > :global(.heroCharText) {
-    position: relative;
-    z-index: 100;
-  }
+.lua {
+  animation: upAndDisappear 2s ease-in-out;
+  animation-fill-mode: forwards;
+  width: 20rem;
+  height: 20rem;
+  position: absolute;
+  z-index: 999;
 }
