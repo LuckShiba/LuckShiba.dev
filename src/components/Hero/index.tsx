@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { useAutoCanvasResize } from "@/hooks/canvas";
 
 import LOptions from "./chars/L";
+import COptions from "./chars/C";
 import KOptions from "./chars/K";
 import HOptions from "./chars/H";
 import IOptions from "./chars/I";
@@ -18,7 +19,7 @@ const TEXT = "LuckShiba";
 const ACTIONS: Array<HeroCharProps["options"] | undefined> = [
   LOptions,
   undefined, // u
-  undefined, // c
+  COptions, // c
   KOptions,
   undefined, // S
   HOptions,
