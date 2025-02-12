@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
   return (
     <div className={classNames(styles.hero, "hero")} ref={heroRef}>
       <canvas className={styles.canvas} ref={canvasRef} />
-      <div className={styles.chars}>
+      <div className={classNames(styles.chars, 'chars')}>
         {[..."LuckShiba"].map((char, i) => (
           <HeroChar
             key={char}

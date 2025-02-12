@@ -12,7 +12,7 @@ const audios = ["lua1.ogg", "lua2.ogg", "lua3.ogg"];
 
 const chooseRandom = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 const getRandomScreenPosition = () => ({
-  x: Math.random() * window.innerWidth,
+  x: Math.random() * (document.querySelector('.hero .chars')?.clientWidth ?? window.innerWidth) - 100,
   y: Math.random() * window.innerHeight / 3,
 });
 
