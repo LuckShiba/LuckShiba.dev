@@ -11,10 +11,6 @@ const images = ["lua1.jpg", "lua2.webp", "lua3.png", "lua4.png", "lua5.png"];
 const audios = ["lua1.ogg", "lua2.ogg", "lua3.ogg"];
 
 const chooseRandom = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
-const getRandomScreenPosition = () => ({
-  x: Math.random() * (document.querySelector('.hero .chars')?.clientWidth ?? window.innerWidth) - 100,
-  y: Math.random() * window.innerHeight / 3,
-});
 
 interface Cat {
   image: string;
@@ -30,16 +26,20 @@ const LExtra: React.FC<LExtraProps> = ({ active }) => {
     const meow = new Audio(`/lua/${chooseRandom(audios)}`);
     meow.play();
 
-    setCats((cats) => [...cats, {
-      image: chooseRandom(images),
-      position: getRandomScreenPosition(),
-    }]);
+    const hero = document.querySelector('.hero') ?? document.documentElement;
 
-    const timeout = setTimeout(() => {
-      setCats((cats) => cats.slice(1));
+    const el = document.createElement('img');
+    el.src = `/lua/${chooseRandom(images)}`;
+    el.className = styles.lua;
+    const halfSize = el.clientWidth / 2;
+    el.style.bottom = `${Math.random() * hero.clientHeight / 3 - halfSize}px`;
+    el.style.left = `${Math.random() * hero.clientWidth - halfSize}px`;
+    
+    hero.appendChild(el);
+
+    setTimeout(() => {
+      el.remove();
     }, 5000);
-
-    return () => clearTimeout(timeout);
   }, [active]);
 
   return (
@@ -62,7 +62,6 @@ const LExtra: React.FC<LExtraProps> = ({ active }) => {
 
 const LOptions: HeroCharProps["options"] = (active) => ({
   extraRender: <LExtra active={active} />,
-  disableJump: false,
   timeout: 1,
 });
 
