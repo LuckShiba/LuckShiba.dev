@@ -1,5 +1,4 @@
-
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import { HeroCharProps } from "../../Char";
 import styles from "./L.module.scss";
 
@@ -12,14 +11,7 @@ const audios = ["lua1.ogg", "lua2.ogg", "lua3.ogg"];
 
 const chooseRandom = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
-interface Cat {
-  image: string;
-  position: { x: number; y: number };
-}
-
 const LExtra: React.FC<LExtraProps> = ({ active }) => {
-  const [cats, setCats] = useState<Cat[]>([]);
-
   useEffect(() => {
     if (!active) return;
 
@@ -42,22 +34,7 @@ const LExtra: React.FC<LExtraProps> = ({ active }) => {
     }, 5000);
   }, [active]);
 
-  return (
-    <>
-      {cats.map((cat, i) => (
-        <img 
-          key={i}
-          src={`/lua/${cat.image}`}
-          alt="cat"
-          className={styles.lua}
-          style={{
-            top: cat.position.y,
-            left: cat.position.x,        
-          }}
-        />
-      ))}
-    </>
-  );
+  return null;
 };
 
 const LOptions: HeroCharProps["options"] = (active) => ({
