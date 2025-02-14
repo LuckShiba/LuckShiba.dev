@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import styles from "./HeroChar.module.scss";
 
 export interface Refs {
@@ -9,6 +9,7 @@ export interface Refs {
 
 export interface HeroCharProps extends React.PropsWithChildren {
   jump?: boolean;
+  char: string;
   options?: (
     active: boolean,
     refs: Refs
@@ -20,6 +21,7 @@ export interface HeroCharProps extends React.PropsWithChildren {
     disableJump?: boolean;
   };
   refs: Refs;
+  onClick?: () => void;
 }
 
 const HeroChar: React.FC<HeroCharProps> = ({
@@ -27,6 +29,8 @@ const HeroChar: React.FC<HeroCharProps> = ({
   jump,
   options,
   refs,
+  char,
+  onClick
 }) => {
   const [active, setActive] = useState(false);
   const [clickAnimation, setClickAnimation] = useState(false);
@@ -58,11 +62,11 @@ const HeroChar: React.FC<HeroCharProps> = ({
     }
   }, [active]);
 
-  const handleClick = () => {
-    setActive((x) => {
-      return !x;
-    });
-  };
+  const handleClick = useCallback(() => {
+    setActive(x => !x);
+
+    onClick?.();
+  }, [onClick]);
 
   return (
     <span
@@ -70,6 +74,7 @@ const HeroChar: React.FC<HeroCharProps> = ({
         styles.heroChar,
         activeOptions?.className,
         "heroChar",
+        `heroChar-${char}`,
         {
           [styles.jump]:
             jump || (clickAnimation && !activeOptions?.disableJump),
