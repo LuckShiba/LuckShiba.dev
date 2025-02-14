@@ -4,6 +4,7 @@ import styles from "./L.module.scss";
 
 interface LExtraProps {
   active: boolean;
+  heroRef: React.RefObject<HTMLDivElement>;
 }
 
 const images = ["lua1.jpg", "lua2.webp", "lua3.png", "lua4.png", "lua5.png"];
@@ -11,14 +12,14 @@ const audios = ["lua1.ogg", "lua2.ogg", "lua3.ogg"];
 
 const chooseRandom = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
-const LExtra: React.FC<LExtraProps> = ({ active }) => {
+const LExtra: React.FC<LExtraProps> = ({ active, heroRef }) => {
   useEffect(() => {
     if (!active) return;
 
     const meow = new Audio(`/lua/${chooseRandom(audios)}`);
     meow.play();
 
-    const hero = document.querySelector('.hero') ?? document.documentElement;
+    const hero = heroRef.current ?? document.documentElement;
 
     const el = document.createElement('img');
     el.src = `/lua/${chooseRandom(images)}`;
@@ -37,8 +38,8 @@ const LExtra: React.FC<LExtraProps> = ({ active }) => {
   return null;
 };
 
-const LOptions: HeroCharProps["options"] = (active) => ({
-  extraRender: <LExtra active={active} />,
+const LOptions: HeroCharProps["options"] = (active, { hero }) => ({
+  extraRender: <LExtra active={active} heroRef={hero} />,
   timeout: 1,
 });
 
