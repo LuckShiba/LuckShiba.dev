@@ -53,10 +53,10 @@ const Hero: React.FC = () => {
       }
 
       const l = document.querySelector(".heroChar-L") as HTMLDivElement;
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 30; i++) {
         setTimeout(() => {
           l.click();
-        }, i * 100);
+        }, i * 150);
       }
 
     }
