@@ -4,7 +4,7 @@ import styles from "./L.module.scss";
 
 interface LExtraProps {
   active: boolean;
-  heroRef: React.RefObject<HTMLDivElement>;
+  heroRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const images = ["lua1.jpg", "lua2.webp", "lua3.png", "lua4.png", "lua5.png"];
@@ -33,7 +33,7 @@ const LExtra: React.FC<LExtraProps> = ({ active, heroRef }) => {
     setTimeout(() => {
       el.remove();
     }, 5000);
-  }, [active]);
+  }, [active, heroRef]);
 
   return null;
 };

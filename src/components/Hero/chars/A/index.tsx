@@ -32,12 +32,11 @@ const AExtra: React.FC<AExtraProps> = ({ active, refs }) => {
 
     const mouseMove = (e: PointerEvent) => {
       draw(e.clientX, e.clientY, e.pressure);
-      e;
     };
 
     const touchStart = (e: TouchEvent) => {
       const { clientX, clientY, force } = e.touches[0];
-      startDrawing(clientX, clientY), force;
+      startDrawing(clientX, clientY, force);
     };
 
     const touchEnd = () => {

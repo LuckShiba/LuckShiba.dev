@@ -1,7 +1,7 @@
 import { RefObject, useCallback, useEffect, useMemo, useRef } from "react";
 import debounce from "lodash.debounce";
 
-export const useCanvasDraw = (ref: RefObject<HTMLCanvasElement>) => {
+export const useCanvasDraw = (ref: RefObject<HTMLCanvasElement | null>) => {
   const canvas = ref.current;
   const lastX = useRef(0);
   const lastY = useRef(0);
@@ -70,7 +70,7 @@ export const useCanvasDraw = (ref: RefObject<HTMLCanvasElement>) => {
 };
 
 export const useAutoCanvasResize = (
-  ref: RefObject<HTMLCanvasElement>,
+  ref: RefObject<HTMLCanvasElement | null>,
   el: HTMLElement | null
 ) => {
   const canvas = ref.current;

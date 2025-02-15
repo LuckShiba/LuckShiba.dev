@@ -3,8 +3,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import styles from "./HeroChar.module.scss";
 
 export interface Refs {
-  canvas: React.RefObject<HTMLCanvasElement>;
-  hero: React.RefObject<HTMLDivElement>;
+  canvas: React.RefObject<HTMLCanvasElement | null>;
+  hero: React.RefObject<HTMLDivElement | null>;
 }
 
 export interface HeroCharProps extends React.PropsWithChildren {
