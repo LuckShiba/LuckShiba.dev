@@ -28,28 +28,38 @@ const ACTIONS: Array<HeroCharProps["options"] | undefined> = [
   AOptions,
 ];
 
-const history: string[] = [];
 
 const Hero: React.FC = () => {
   const current = useSequentialAnimation(TEXT.length, 100, 2000);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const history = useRef<string[]>([]);
+  const style = useRef<HTMLStyleElement>(null);
 
   useAutoCanvasResize(canvasRef, heroRef.current);
   const onClick = useCallback((char: string) => {
-    history.push(char);
+    history.current?.push(char);
     
-    if (history.length > 3) {
-      history.shift();
+    if (history.current?.length > 3) {
+      history.current?.shift();
     }
 
     const text = "Lua";
+    console.log(style.current);
 
-    if (history.join("") === text) {
-      const chars = document.querySelectorAll(`.heroChar:not(.heroChar-L):not(.heroChar-u):not(.heroChar-a)`) as NodeListOf<HTMLDivElement>;
-      
-      for (const char of chars) {
-        char.classList.toggle(styles.hide);
+    if (history.current?.join("") === text) {
+      if (style.current) {
+        style.current.remove();
+        style.current = null;
+      } else {
+        const styleEl = document.createElement("style");
+        styleEl.innerHTML = `
+          .heroChar:not(.heroChar-L):not(.heroChar-u):not(.heroChar-a) {
+            font-size: 0;
+          }
+        `;
+        document.head.appendChild(styleEl);
+        style.current = styleEl;
       }
 
       const l = document.querySelector(".heroChar-L") as HTMLDivElement;
@@ -58,9 +68,8 @@ const Hero: React.FC = () => {
           l.click();
         }, i * 150);
       }
-
     }
-  }, []);
+  }, [style, history]);
 
   return (
     <div className={classNames(styles.hero, "hero")} ref={heroRef}>
